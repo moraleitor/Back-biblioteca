@@ -77,4 +77,4 @@ El backend es un contenedor Docker (`python run_all.py`): el gateway escucha en 
 - Verifica con `GET /health`.
 
 ### Modo demo en Vercel
-`api/index.py` junta los 7 servicios en un solo proceso (conectados en memoria con `registry.use_apps`). Solo para demo: los datos viven en `/tmp` y se pierden al reiniciar la función, y sin Tesseract el escaneo responde 503. Para producción real usa el Dockerfile.
+`app.py` junta los 7 servicios en un solo proceso (conectados en memoria con `registry.use_apps`). Solo para demo: los datos viven en `/tmp` y se pierden al reiniciar la función, y sin Tesseract el escaneo responde 503. Para producción real usa el Dockerfile.

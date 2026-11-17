@@ -6,7 +6,7 @@ la función) y no hay Tesseract, así que /api/scan responde 503 (OCR no disponi
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 os.environ.setdefault("DATA_DIR", "/tmp/biblioteca-data")
 os.makedirs(os.environ["DATA_DIR"], exist_ok=True)
 
