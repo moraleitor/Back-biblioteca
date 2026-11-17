@@ -1,0 +1,42 @@
+# Cada microservicio corre en su propio contenedor; solo el gateway se expone.
+x-common: &common
+  build: .
+  environment:
+    JWT_SECRET: ${JWT_SECRET:-cambia-este-secreto-en-produccion-32b}
+    DATA_DIR: /data
+    AUTH_URL: http://auth:8000
+    LIBRARY_URL: http://library:8000
+    NOTES_URL: http://notes:8000
+    OCR_URL: http://ocr:8000
+    AI_URL: http://ai:8000
+    BACKUP_URL: http://backup:8000
+  volumes:
+    - biblioteca-data:/data
+
+services:
+  gateway:
+    <<: *common
+    command: uvicorn services.gateway.main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+  auth:
+    <<: *common
+    command: uvicorn services.auth.main:app --host 0.0.0.0 --port 8000
+  library:
+    <<: *common
+    command: uvicorn services.library.main:app --host 0.0.0.0 --port 8000
+  notes:
+    <<: *common
+    command: uvicorn services.notes.main:app --host 0.0.0.0 --port 8000
+  ocr:
+    <<: *common
+    command: uvicorn services.ocr.main:app --host 0.0.0.0 --port 8000
+  ai:
+    <<: *common
+    command: uvicorn services.ai.main:app --host 0.0.0.0 --port 8000
+  backup:
+    <<: *common
+    command: uvicorn services.backup.main:app --host 0.0.0.0 --port 8000
+
+volumes:
+  biblioteca-data:
