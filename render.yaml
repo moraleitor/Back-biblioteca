@@ -1,0 +1,18 @@
+# Blueprint de Render: un contenedor con el gateway y los 6 microservicios, con disco persistente.
+services:
+  - type: web
+    name: biblioteca-api
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATA_DIR
+        value: /data
+      - key: CORS_ORIGINS
+        value: "*"
+    disk:
+      name: biblioteca-data
+      mountPath: /data
+      sizeGB: 1

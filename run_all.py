@@ -8,7 +8,7 @@ import subprocess
 import sys
 import time
 
-SERVICES = {"auth": 8001, "library": 8002, "notes": 8003, "ocr": 8004, "ai": 8005, "backup": 8006, "gateway": 8000}
+SERVICES = {"auth": 8001, "library": 8002, "notes": 8003, "ocr": 8004, "ai": 8005, "backup": 8006, "gateway": int(os.environ.get("PORT", 8000))}
 
 
 def main() -> None:

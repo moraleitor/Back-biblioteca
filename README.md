@@ -69,3 +69,9 @@ CRUD de la biblioteca, subrayados, OCR real, IA, respaldo/restauración y el flu
 ## Notas
 - Proyecto académico (Uniempresarial, clase de Innovación). Las funciones de IA son ligeras y locales; se pueden cambiar por un modelo externo sin tocar el resto.
 - Digitalizar libros protegidos tiene implicaciones de derecho de autor: el uso previsto es personal. Revisar con un abogado antes de lanzar.
+
+## Despliegue en producción
+El backend es un contenedor Docker (`python run_all.py`): el gateway escucha en `$PORT` y los 6 microservicios en puertos internos.
+- **Render:** «New → Blueprint» sobre este repo (usa `render.yaml`, genera `JWT_SECRET` y monta un disco en `/data`).
+- Variables: `JWT_SECRET` (obligatoria), `DATA_DIR`, `CORS_ORIGINS` (pon la URL de Vercel del UI).
+- Verifica con `GET /health`.

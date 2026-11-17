@@ -7,4 +7,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 ENV PYTHONPATH=/app DATA_DIR=/data
 EXPOSE 8000
-CMD ["uvicorn", "services.gateway.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Producción en un solo contenedor: gateway en $PORT + 6 microservicios internos.
+CMD ["python", "run_all.py"]
